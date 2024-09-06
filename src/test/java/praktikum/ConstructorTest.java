@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 
 public class ConstructorTest {
 
-    WebDriver webDriver = Browser.setBrowser("Chrome");
+    private final WebDriver webDriver = Browser.setBrowser("Chrome");
 
     public ConstructorTest() throws Exception {
     }
@@ -23,7 +23,6 @@ public class ConstructorTest {
         constructorClickTest.enterLoginInfoAndClickEnter("testemail@testdomain.local", "12345678");
         constructorClickTest.clickAccount();
         Assert.assertTrue(constructorClickTest.clickConstructor().isDisplayed());
-        User.deleteUserUsingAPI("testemail@testdomain.local", "12345678");
     }
 
     @Test
@@ -36,13 +35,13 @@ public class ConstructorTest {
         constructorClickTest.enterLoginInfoAndClickEnter("testemail@testdomain.local", "12345678");
         constructorClickTest.clickAccount();
         Assert.assertTrue(constructorClickTest.clickLogo().isDisplayed());
-        User.deleteUserUsingAPI("testemail@testdomain.local", "12345678");
     }
 
     @Test
     @DisplayName("Test Click Ingredients")
     public void testClickIngredients() {
         Constructor constructorClickTest  = new Constructor(webDriver);
+        User.registerUserUsingAPI("testemail@testdomain.local", "12345678", "Chubaka");
         constructorClickTest.openPage();
         Assert.assertTrue(constructorClickTest.clickSauces().isDisplayed());
         Assert.assertTrue(constructorClickTest.clickBuns().isDisplayed());
@@ -52,6 +51,11 @@ public class ConstructorTest {
     @After
     public void close() {
         webDriver.quit();
+    }
+
+    @After
+    public void deleteUser() {
+        User.deleteUserUsingAPI("testemail@testdomain.local", "12345678");
     }
 
 }

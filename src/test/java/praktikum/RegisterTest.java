@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 
 public class RegisterTest {
 
-    WebDriver webDriver = Browser.setBrowser("Chrome");
+    private final WebDriver webDriver = Browser.setBrowser("Chrome");
 
     public RegisterTest() throws Exception {
     }

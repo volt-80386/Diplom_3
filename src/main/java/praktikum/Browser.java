@@ -18,9 +18,9 @@ public class Browser {
             }
             case "Yandex": {
                 ChromeOptions options = new ChromeOptions();
-                System.setProperty("webdriver.chrome.driver", "C:\\Users\\Volt\\Downloads\\yandexdriver.exe");
+                System.setProperty("webdriver.chrome.driver", ".\\src\\main\\resources\\yandexdriver.exe");
                 webDriver = new ChromeDriver(options);
-                options.setBinary("C:\\Users\\Volt\\AppData\\Local\\Yandex\\YandexBrowser\\Application\\browser.exe");
+                options.setBinary("browser.exe");
                 webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
                 return webDriver;
             }

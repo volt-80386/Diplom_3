@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginTest {
 
-    WebDriver webDriver = Browser.setBrowser("Chrome");
+    private final WebDriver webDriver = Browser.setBrowser("Yandex");
 
     public LoginTest() throws Exception {
     }
@@ -21,7 +21,6 @@ public class LoginTest {
         loginTest.openPage();
         loginTest.clickAccount();
         Assert.assertTrue(loginTest.enterLoginInfoAndClickEnter("testemail@testdomain.local", "12345678").isDisplayed());
-        User.deleteUserUsingAPI("testemail@testdomain.local", "12345678");
     }
 
     @Test
@@ -32,7 +31,6 @@ public class LoginTest {
         loginTest.openPage();
         loginTest.clickLoginAccount();
         Assert.assertTrue(loginTest.enterLoginInfoAndClickEnter("testemail@testdomain.local", "12345678").isDisplayed());
-        User.deleteUserUsingAPI("testemail@testdomain.local", "12345678");
     }
 
     @Test
@@ -45,7 +43,6 @@ public class LoginTest {
         loginTest.clickRegisterLink();
         loginTest.clickLogin();
         Assert.assertTrue(loginTest.enterLoginInfoAndClickEnter("testemail@testdomain.local", "12345678").isDisplayed());
-        User.deleteUserUsingAPI("testemail@testdomain.local", "12345678");
     }
 
     @Test
@@ -58,7 +55,6 @@ public class LoginTest {
         loginTest.clickRecover();
         loginTest.clickLogin();
         Assert.assertTrue(loginTest.enterLoginInfoAndClickEnter("testemail@testdomain.local", "12345678").isDisplayed());
-        User.deleteUserUsingAPI("testemail@testdomain.local", "12345678");
     }
 
     @Test
@@ -71,7 +67,6 @@ public class LoginTest {
         Assert.assertTrue(loginTest.enterLoginInfoAndClickEnter("testemail@testdomain.local", "12345678").isDisplayed());
         loginTest.clickAccount();
         Assert.assertTrue(loginTest.clickLogoff().isDisplayed());
-        User.deleteUserUsingAPI("testemail@testdomain.local", "12345678");
     }
 
     @Test
@@ -84,12 +79,16 @@ public class LoginTest {
         Assert.assertTrue(loginTest.enterLoginInfoAndClickEnter("testemail@testdomain.local", "12345678").isDisplayed());
         loginTest.clickAccount();
         Assert.assertTrue(loginTest.accountCheck().isDisplayed());
-        User.deleteUserUsingAPI("testemail@testdomain.local", "12345678");
     }
 
     @After
     public void close() {
         webDriver.quit();
+    }
+
+    @After
+    public void deleteUser() {
+        User.deleteUserUsingAPI("testemail@testdomain.local", "12345678");
     }
 
 }
